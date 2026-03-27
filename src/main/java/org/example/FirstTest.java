@@ -26,7 +26,8 @@ public class FirstTest {
                 UiAutomator2Options options = new UiAutomator2Options()
                                 .setPlatformName("Android")
                                 .setAutomationName("uiautomator2")
-                                .setApp(System.getProperty("user.dir") + "/app/t36.apk");
+                                .setApp(System.getProperty("user.dir") + "/app/t36.apk")
+                                .setCapability("autoGrantPermissions", true);
 
                 driver = new AndroidDriver(URI.create(appiumServerUrl).toURL(), options);
         }
@@ -48,7 +49,7 @@ public class FirstTest {
                 // 3. проверим что кнопка "продолжить" кнопка есть
                 System.out.println("3. Проверка — появление кнопки «Продолжить».");
                 WebElement btnRussian = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                                AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Про должить')]")));
+                                AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Продолжить')]")));
                 Assert.assertTrue(btnRussian.isDisplayed(), "Кнопка 'Продолжить' не найдена");
                 System.out.println("✅ Кнопка 'Продолжить' найдена");
 
