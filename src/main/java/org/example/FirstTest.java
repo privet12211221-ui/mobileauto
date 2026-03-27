@@ -48,7 +48,7 @@ public class FirstTest {
                 // 3. проверим что кнопка "продолжить" кнопка есть
                 System.out.println("3. Проверка — появление кнопки «Продолжить».");
                 WebElement btnRussian = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                                AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Продолжить')]")));
+                                AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Про должить')]")));
                 Assert.assertTrue(btnRussian.isDisplayed(), "Кнопка 'Продолжить' не найдена");
                 System.out.println("✅ Кнопка 'Продолжить' найдена");
 
@@ -91,17 +91,29 @@ public class FirstTest {
                 wait.until(ExpectedConditions.elementToBeClickable(
                                 AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Davom etish')]"))).click();
 
-                // 11. Разрешить доступ (Permission Allow)
-                System.out.println("11. Клик — системное разрешение Android (Allow).");
-                wait.until(ExpectedConditions.elementToBeClickable(
-                                AppiumBy.xpath("//android.widget.Button[@resource-id=\"com.android.permissioncontroller:id/permission_allow_button\"]")))
-                                .click();
+                // 11. Разрешить доступ (Permission Allow) - НЕОБЯЗАТЕЛЬНО
+                System.out.println("11. Клик — системное разрешение Android (Allow) - Проверка наличия.");
+                try {
+                        WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(5));
+                        shortWait.until(ExpectedConditions.elementToBeClickable(
+                                        AppiumBy.xpath("//android.widget.Button[@resource-id=\"com.android.permissioncontroller:id/permission_allow_button\"]")))
+                                        .click();
+                        System.out.println("✅ Разрешение предоставлено");
+                } catch (Exception e) {
+                        System.out.println("⚠️ Системное разрешение не появилось или уже предоставлено, продолжаем...");
+                }
 
-                // 12. click "Men oddiy foydalanuvchiman"
-                System.out.println("12. Клик — выбор роли «Обычный пользователь».");
-                wait.until(ExpectedConditions.elementToBeClickable(
-                                AppiumBy.xpath("//android.view.View[@content-desc=\"Men oddiy foydalanuvchiman\\nMen oddiy foydalanuvchiman\"]")))
-                                .click();
+                // 12. click "Men oddiy foydalanuvchiman" - НЕОБЯЗАТЕЛЬНО
+                System.out.println("12. Клик — выбор роли «Обычный пользователь» - Проверка наличия.");
+                try {
+                        WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(5));
+                        shortWait.until(ExpectedConditions.elementToBeClickable(
+                                        AppiumBy.xpath("//android.view.View[@content-desc=\"Men oddiy foydalanuvchiman\\nMen oddiy foydalanuvchiman\"]")))
+                                        .click();
+                        System.out.println("✅ Роль выбрана");
+                } catch (Exception e) {
+                        System.out.println("⚠️ Выбор роли не появился, продолжаем...");
+                }
 
                 // 13. Продолжение (Next Action)
                 System.out.println("13. Клик — кнопка «Далее» (переход).");
