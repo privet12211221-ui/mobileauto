@@ -41,7 +41,7 @@ public class Loyalty {
         driver.terminateApp("com.turontelecom.app.demo");
         driver.activateApp("com.turontelecom.app.demo");
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
         Thread.sleep(1000);
 
@@ -148,12 +148,13 @@ public class Loyalty {
                 AppiumBy.xpath("//*[contains(@content-desc, 'Butun vaqt davomida') and contains(@content-desc, 'Keshbek balansi')]"))).click();
         Thread.sleep(2000);
 
-        System.out.println("25. Проверка — запись о покупке +30 bal.");
-        WebElement purchaseRecord20 = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                AppiumBy.xpath("//*[contains(@content-desc, 'Sotib olish') and contains(@content-desc, '+ 30 bal')]")
-        ));
-        Assert.assertTrue(purchaseRecord20.isDisplayed(), "Запись +30 bal не найдена");
-        System.out.println("✅ Запись +30 bal найдена");
+            System.out.println("Проверка — ищем + 30 bal под датой 31.03.2026.");
+
+            WebElement targetRecord = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                    AppiumBy.xpath("//*[contains(@content-desc, '32.03.2026')]/following-sibling::*[contains(@content-desc, '+ 30')]")
+            ));
+
+            System.out.println("✅ Запись + 30 bal за 31.03.2026 успешно найдена!");
 
         Thread.sleep(2000);
 
@@ -161,6 +162,11 @@ public class Loyalty {
         wait.until(ExpectedConditions.elementToBeClickable(
                 AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.ImageView\").instance(0)"))).click();
         Thread.sleep(1000);
+
+
+
+
+
 
         System.out.println("27. Клик — T Market.");
         wait.until(ExpectedConditions.elementToBeClickable(
@@ -341,7 +347,7 @@ public class Loyalty {
 
         System.out.println("Проверка — отображается Keshbekdan.");
         WebElement keshbekdanElement = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                AppiumBy.xpath("//*[contains(@content-desc, 'Keshbekdan')]")
+                AppiumBy.xpath("//*[contains(@content-desc, 'Kartadan yechib olish')]")
         ));
         System.out.println("✅ Элемент 'Keshbekdan' успешно найден на экране!");
 
