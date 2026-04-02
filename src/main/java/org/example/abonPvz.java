@@ -15,7 +15,7 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.time.Duration;
 
-public class ClientPvzCashback {
+public class abonPvz {
 
     public AndroidDriver driver;
 
@@ -45,79 +45,71 @@ public class ClientPvzCashback {
 
         Thread.sleep(1000);
 
-        System.out.println("55. Клик — T Market.");
+        System.out.println("20. Клик — T Market.");
         wait.until(ExpectedConditions.elementToBeClickable(
                 AppiumBy.accessibilityId("T Market"))).click();
         Thread.sleep(1000);
 
-        System.out.println("56. Клик — planshet12345678.");
+        System.out.println("21. Клик — planshet12345678.");
         wait.until(ExpectedConditions.elementToBeClickable(
                 AppiumBy.accessibilityId("planshet12345678"))).click();
         Thread.sleep(1000);
 
-        System.out.println("57. olib ketish.");
+        System.out.println("22. olib ketish.");
         wait.until(ExpectedConditions.elementToBeClickable(
-                AppiumBy.accessibilityId("Olib ketish\nBepul\n2 varaqdan 2"))).click();
+                AppiumBy.accessibilityId("Olib ketish\nBepul\n3 varaqdan 2"))).click();
         Thread.sleep(1000);
 
-        System.out.println("58. Клик — Ko'rsatish.");
+        System.out.println("23. Клик — Ko'rsatish.");
         wait.until(ExpectedConditions.elementToBeClickable(
-                AppiumBy.xpath("//*[contains(@content-desc, 'Yetkazib berish punktini tanlash')]"))).click();
+                        AppiumBy.xpath("//*[contains(@content-desc, 'Yetkazib berish punktini tanlash')]")))
+                .click();
 
         Thread.sleep(5000);
 
-        System.out.println("59. Клик — маркер на карте.");
+        System.out.println("24. Клик — маркер на карте.");
         wait.until(ExpectedConditions.elementToBeClickable(
-                AppiumBy.androidUIAutomator("new UiSelector().description(\"Map Marker\").instance(0)"))).click();
+                        AppiumBy.androidUIAutomator(
+                                "new UiSelector().description(\"Map Marker\").instance(0)")))
+                .click();
 
         Thread.sleep(5000);
 
-        System.out.println("60. Клик — Ushbu punktni tanlash.");
+        System.out.println("25. Клик — Ushbu punktni tanlash.");
         wait.until(ExpectedConditions.elementToBeClickable(
                 AppiumBy.accessibilityId("Ushbu punktni tanlash\nUshbu punktni tanlash"))).click();
         Thread.sleep(1000);
 
-        System.out.println("61. Проверка — пункт самовывоза установлен.");
-        WebElement pickupSet1 = wait.until(ExpectedConditions.visibilityOfElementLocated(
+        System.out.println("26. Проверка — пункт самовывоза установлен.");
+        WebElement pickupSet = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 AppiumBy.xpath("//*[contains(@content-desc, 'Toshkent shahri, Sergeli tumani, 6-massiv, 47')]")));
-        Assert.assertTrue(pickupSet1.isDisplayed(), "Пункт самовывоза не установлен");
+        Assert.assertTrue(pickupSet.isDisplayed(), "Пункт самовывоза не установлен");
         System.out.println("✅ Пункт самовывоза установлен");
 
-        System.out.println("62. Клик — instance 16.");
+        System.out.println("27. Клик — instance 16.");
         wait.until(ExpectedConditions.elementToBeClickable(
-                AppiumBy.androidUIAutomator("new UiSelector().className(\"android.view.View\").instance(16)"))).click();
+                        AppiumBy.androidUIAutomator(
+                                "new UiSelector().className(\"android.view.View\").instance(18)")))
+                .click();
         Thread.sleep(1000);
 
-        System.out.println("63. Клик — To'lash.");
+        System.out.println("28. Клик — To'lash.");
         wait.until(ExpectedConditions.elementToBeClickable(
                 AppiumBy.accessibilityId("To'lash\nTo'lash"))).click();
         Thread.sleep(1000);
 
-        System.out.println("64. Клик — кешбек (Switch).");
+        System.out.println("29. Клик — To'lash.");
+        wait.until(ExpectedConditions.elementToBeClickable(
+                AppiumBy.accessibilityId("To'lash\n2 000 UZS"))).click();
+        Thread.sleep(5000);
 
-        WebElement switchBtn1 = wait.until(ExpectedConditions.elementToBeClickable(
-                AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.Switch\")")));
-        switchBtn1.click();
-
-        System.out.println("65. Проверка — отображается Kartadan yechib olish.");
-        WebElement kartadanTextElement = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                AppiumBy.xpath("//*[contains(@content-desc, 'Kartadan yechib olish')]")));
-        System.out.println("✅ Элемент 'Kartadan yechib olish' успешно найден на экране!");
-
-        // 66. Кликаем кнопку оплаты
-        System.out.println("66. Клик — кнопка оплаты (To'lash).");
-        WebElement payWithCashbackPickupBtn = wait.until(ExpectedConditions.elementToBeClickable(
-                AppiumBy.xpath("//*[contains(@content-desc, \"To'lash\") and contains(@content-desc, 'UZS')]")));
-        payWithCashbackPickupBtn.click();
-
-        System.out.println("67. Проверка — Ilovani baholang.");
-        WebElement rateAppDialogPickupCashback = wait.until(ExpectedConditions.visibilityOfElementLocated(
+        System.out.println("30. Проверка — Ilovani baholang.");
+        WebElement rateDialog1 = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 AppiumBy.accessibilityId("Ilovani baholang\nIlovani baholang")));
-        Assert.assertTrue(rateAppDialogPickupCashback.isDisplayed(), "Диалог оценки не появился");
+        Assert.assertTrue(rateDialog1.isDisplayed(), "Диалог оценки не появился");
         System.out.println("✅ Диалог оценки появился");
-        Thread.sleep(2000);
 
-        System.out.println("68. Клик — Asosiy sahifaga.");
+        System.out.println("31. Клик — Asosiy sahifaga.");
         wait.until(ExpectedConditions.elementToBeClickable(
                 AppiumBy.accessibilityId("Asosiy sahifaga\nAsosiy sahifaga"))).click();
         Thread.sleep(2000);

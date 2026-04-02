@@ -15,7 +15,7 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.time.Duration;
 
-public class ClientPvzCashback {
+public class abonPvzCashback {
 
     public AndroidDriver driver;
 
@@ -57,7 +57,7 @@ public class ClientPvzCashback {
 
         System.out.println("57. olib ketish.");
         wait.until(ExpectedConditions.elementToBeClickable(
-                AppiumBy.accessibilityId("Olib ketish\nBepul\n2 varaqdan 2"))).click();
+                AppiumBy.accessibilityId("Olib ketish\nBepul\n3 varaqdan 2"))).click();
         Thread.sleep(1000);
 
         System.out.println("58. Клик — Ko'rsatish.");
@@ -85,7 +85,7 @@ public class ClientPvzCashback {
 
         System.out.println("62. Клик — instance 16.");
         wait.until(ExpectedConditions.elementToBeClickable(
-                AppiumBy.androidUIAutomator("new UiSelector().className(\"android.view.View\").instance(16)"))).click();
+                AppiumBy.androidUIAutomator("new UiSelector().className(\"android.view.View\").instance(18)"))).click();
         Thread.sleep(1000);
 
         System.out.println("63. Клик — To'lash.");
