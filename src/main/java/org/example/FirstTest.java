@@ -24,260 +24,204 @@ public class FirstTest {
                 String appiumServerUrl = "http://127.0.0.1:4723";
 
                 UiAutomator2Options options = new UiAutomator2Options()
-                                .setPlatformName("Android")
-                                .setAutomationName("uiautomator2")
-                                .setApp(System.getProperty("user.dir") + "/app/t36.apk")
-                                .autoGrantPermissions()
-                                .setNoReset(true)    // Не очищать кэш и данные приложения
-                                .setFullReset(false); // Не удалять приложение перед тестом
+                        .setPlatformName("Android")
+                        .setAutomationName("uiautomator2")
+                        .setApp(System.getProperty("user.dir") + "/app/t36.apk")
+                        .autoGrantPermissions()
+                        .setNoReset(true)
+                        .setFullReset(false);
 
                 driver = new AndroidDriver(URI.create(appiumServerUrl).toURL(), options);
         }
 
         @Test
-        public void test() {
+        public void test() throws InterruptedException {
                 System.out.println("⏳ Тест запущен!");
 
-                // Жестко закрываем и открываем приложение, чтобы оно оказалось на главной странице
-                driver.terminateApp("com.turontelecom.app.demo"); // Закрываем
-                driver.activateApp("com.turontelecom.app.demo");  // Открываем заново
+                driver.terminateApp("com.turontelecom.app.demo");
+                driver.activateApp("com.turontelecom.app.demo");
 
-                WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+                WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
-//                // 1. Клик — выбор Узбекского языка.
-//                System.out.println("1. Клик — выбор Узбекского языка.");
-//                wait.until(ExpectedConditions.elementToBeClickable(
-//                                AppiumBy.xpath("//android.widget.ImageView[@content-desc=\"O'zbekcha\"]"))).click();
-//
-//                // 2. Клик — выбор Русского языка.
-//                System.out.println("2. Клик — выбор Русского языка.");
-//                wait.until(ExpectedConditions.elementToBeClickable(
-//                                AppiumBy.xpath("//android.widget.ImageView[@content-desc=\"Русский\"]"))).click();
-//
-//                // 3. Проверка — появление кнопки «Продолжить».
-//                System.out.println("3. Проверка — появление кнопки «Продолжить».");
-//                WebElement btnRussian = wait.until(ExpectedConditions.visibilityOfElementLocated(
-//                                AppiumBy.accessibilityId("Продолжить\nПродолжить")));
-//                Assert.assertTrue(btnRussian.isDisplayed(), "Кнопка 'Продолжить' не найдена");
-//                System.out.println("✅ Кнопка 'Продолжить' найдена");
-//
-//                // 4. Клик — выбор Русского языка.
-//                System.out.println("4. Клик — выбор Русского языка.");
-//                wait.until(ExpectedConditions.elementToBeClickable(
-//                                AppiumBy.xpath("//android.widget.ImageView[@content-desc=\"Русский\"]"))).click();
-//
-//                // 5. Клик — выбор Английского языка.
-//                System.out.println("5. Клик — выбор Английского языка.");
-//                wait.until(ExpectedConditions.elementToBeClickable(
-//                                AppiumBy.xpath("//android.widget.ImageView[@content-desc=\"English\"]"))).click();
-//
-//                // 6. Проверка — появление кнопки «Continue».
-//                System.out.println("6. Проверка — появление кнопки «Continue».");
-//                WebElement btnEnglish = wait.until(ExpectedConditions.visibilityOfElementLocated(
-//                                AppiumBy.accessibilityId("Continue\nContinue")));
-//                Assert.assertTrue(btnEnglish.isDisplayed(), "Кнопка 'Continue' не найдена");
-//                System.out.println("✅ Кнопка 'Continue' найдена");
-//
-//                // 7. Клик — выбор Английского языка.
-//                System.out.println("7. Клик — выбор Английского языка.");
-//                wait.until(ExpectedConditions.elementToBeClickable(
-//                                AppiumBy.xpath("//android.widget.ImageView[@content-desc=\"English\"]"))).click();
-//
-//                // 8. Клик — выбор Узбекского языка.
-//                System.out.println("8. Клик — выбор Узбекского языка.");
-//                wait.until(ExpectedConditions.elementToBeClickable(
-//                                AppiumBy.xpath("//android.widget.ImageView[@content-desc=\"O'zbekcha\"]"))).click();
-//
-//                // 9. Проверка — появление кнопки «Davom etish».
-//                System.out.println("9. Проверка — появление кнопки «Davom etish».");
-//                WebElement btnUzbek = wait.until(ExpectedConditions.visibilityOfElementLocated(
-//                                AppiumBy.accessibilityId("Davom etish\nDavom etish")));
-//                Assert.assertTrue(btnUzbek.isDisplayed(), "Кнопка 'Davom etish' не найдена");
-//                System.out.println("✅ Кнопка 'Davom etish' найдена");
+                Thread.sleep(1000);
 
-//                // 10. Клик — нажатие «Davom etish».
-//                System.out.println("10. Клик — нажатие «Davom etish».");
-//                wait.until(ExpectedConditions.elementToBeClickable(
-//                                AppiumBy.xpath("//android.view.View[@content-desc=\"Davom etish\n" +
-//                                        "Davom etish\"]"))).click();
-//
-//
-//
-//                // 12. Клик — выбор роли «Обычный пользователь».
-//                System.out.println("12. Клик — выбор роли «Обычный пользователь».");
-//                wait.until(ExpectedConditions.elementToBeClickable(
-//                                AppiumBy.accessibilityId("Men oddiy foydalanuvchiman\nMen oddiy foydalanuvchiman")))
-//                                .click();
-
-                // 13. Клик — кнопка «профиль» (переход).
-                System.out.println("13. Клик — кнопка «профиль» (переход).");
+                System.out.println("35. Клик — Turon Market.");
                 wait.until(ExpectedConditions.elementToBeClickable(
-                                AppiumBy.androidUIAutomator(
-                                                "new UiSelector().className(\"android.widget.ImageView\").instance(0)")))
-                                .click();
+                        AppiumBy.accessibilityId("Turon Market"))).click();
+                Thread.sleep(1000);
 
-                // 14. Клик — раздел «Ilova haqida» (О приложении).
-                System.out.println("14. Клик — раздел «Ilova haqida» (О приложении).");
-                wait.until(ExpectedConditions.elementToBeClickable(AppiumBy.xpath("//*[contains(@content-desc, 'Ilova haqida')]"))).click();
-
-                // 15. Проверка — версия приложения.
-                System.out.println("15. Проверка — версия приложения.");
-                WebElement appVersion = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                                AppiumBy.accessibilityId("Ilova versiyasi\n3.64.0(124)")));
-                Assert.assertTrue(appVersion.isDisplayed(), "Версия приложения не совпадает");
-                System.out.println("✅ Версия приложения найдена");
-
-                // 16. Клик (Системный) — физическая кнопка Назад (Back).
-                System.out.println("16. Клик (Системный) — физическая кнопка Назад (Back).");
-                driver.navigate().back();
-
-                // 17. Клик — открытие меню языка.
-                System.out.println("17. Клик — открытие меню языка.");
+                System.out.println("36. Клик — planshet12345678.");
                 wait.until(ExpectedConditions.elementToBeClickable(
-                                AppiumBy.accessibilityId("Til\nO'zbekcha"))).click();
+                        AppiumBy.accessibilityId("planshet12345678"))).click();
+                Thread.sleep(1000);
 
-                // 18. Клик — выбираем Русский.
-                System.out.println("18. Клик — выбираем Русский.");
+                System.out.println("37. Клик — кнопка добавления в корзину.");
                 wait.until(ExpectedConditions.elementToBeClickable(
-                                AppiumBy.accessibilityId("Русский"))).click();
+                        AppiumBy.androidUIAutomator("new UiSelector().className(\"android.view.View\").instance(16)"))).click();
 
-                // 19. Проверка — кнопка изменилась на «Войти».
-                System.out.println("19. Проверка — кнопка изменилась на «Войти».");
-                WebElement btnVojti = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                                AppiumBy.accessibilityId("Войти\nВойти")));
-                Assert.assertTrue(btnVojti.isDisplayed(), "Кнопка 'Войти' не найдена");
-                System.out.println("✅ Кнопка 'Войти' найдена");
-
-                // 20. Клик — открытие меню языка.
-                System.out.println("20. Клик — открытие меню языка.");
+                // 38. Клик — «Ko'rsatish» (указать адрес доставки)
+                System.out.println("38. Клик — Ko'rsatish.");
                 wait.until(ExpectedConditions.elementToBeClickable(
-                                AppiumBy.accessibilityId("Язык\nРусский"))).click();
+                        AppiumBy.xpath("//*[contains(@content-desc, 'rsatish')]"))).click();
 
-                // 21. Клик — выбираем Узбекский.
-                System.out.println("21. Клик — выбираем Узбекский.");
+                Thread.sleep(5000);
+
+                System.out.println("39. Клик — кнопка выбора адреса.");
                 wait.until(ExpectedConditions.elementToBeClickable(
-                        AppiumBy.xpath("//*[contains(@content-desc, 'zbekcha')]")
+                        AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.Button\")"))).click();
+                Thread.sleep(5000);
+
+                System.out.println("40. Клик — Tasdiqlash.");
+                wait.until(ExpectedConditions.elementToBeClickable(
+                        AppiumBy.accessibilityId("Tasdiqlash\nTasdiqlash"))).click();
+                Thread.sleep(1000);
+
+
+                System.out.println("41. Проверка — Turon Team location.");
+                WebElement locationLabel1 = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                        AppiumBy.accessibilityId("Turon Team location")));
+                Assert.assertTrue(locationLabel1.isDisplayed(), "Turon Team location не найден");
+                System.out.println("✅ Turon Team location найден");
+
+                System.out.println("42. Клик — Tasdiqlash.");
+                wait.until(ExpectedConditions.elementToBeClickable(
+                        AppiumBy.accessibilityId("Tasdiqlash\nTasdiqlash"))).click();
+                Thread.sleep(1000);
+
+                System.out.println("43. Проверка — адрес доставки.");
+                WebElement deliveryAddr1 = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                        AppiumBy.accessibilityId("Yetkazib berish manzili\nTuron Team location   \nBoshqasini tanlash\nBoshqasini tanlash")));
+                Assert.assertTrue(deliveryAddr1.isDisplayed(), "Адрес доставки не отображается");
+                System.out.println("✅ Адрес доставки подтверждён");
+
+                Thread.sleep(5000);
+
+                System.out.println("44. Клик — To'lash.");
+                wait.until(ExpectedConditions.elementToBeClickable(
+                        AppiumBy.androidUIAutomator("new UiSelector().description(\"To'lash\n" +
+                                "To'lash\")"))).click();
+                Thread.sleep(1000);
+
+                System.out.println("45. Клик — кешбек (Switch).");
+
+                WebElement switchBtn = wait.until(ExpectedConditions.elementToBeClickable(
+                        AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.Switch\")")
+                ));
+                switchBtn.click();
+
+                System.out.println("46. Проверка — отображается Keshbekdan.");
+                WebElement keshbekdanElement = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                        AppiumBy.xpath("//*[contains(@content-desc, 'Kartadan yechib olish')]")
+                ));
+                System.out.println("✅ Элемент 'Keshbekdan' успешно найден на экране!");
+
+                System.out.println("--- ЧИТАЕМ СУММЫ ПЕРЕД ОПЛАТОЙ ---");
+
+// 1. Находим элемент ПЕРЕД словом "UZS" (достанет "2 751")
+                System.out.println("--- ЧИТАЕМ СУММЫ ПЕРЕД ОПЛАТОЙ ---");
+
+// 1. Обязательная пауза: ждем, пока Flutter пересчитает суммы после включения кешбэка
+                Thread.sleep(1000);
+
+// 2. Ищем элемент ПЕРЕД словом "UZS", строго игнорируя пустые блоки Flutter (!= '')
+                WebElement uzsElement = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                        AppiumBy.xpath("//android.view.View[@content-desc='UZS']/preceding-sibling::*[@content-desc != ''][1]")
+                ));
+                String rawUzs = uzsElement.getAttribute("content-desc");
+// Выводим в консоль то, что нашли, чтобы если что, сразу видеть проблему
+                System.out.println("DEBUG: Найденный текст для UZS: [" + rawUzs + "]");
+
+                int totalUzs = Integer.parseInt(rawUzs.replaceAll("[^0-9]", ""));
+                int X = totalUzs / 100; // Отрезаем лишнее, оставляем только нужный процент
+                System.out.println("Сумма покупки: " + totalUzs + ", ожидаем кешбэк (X): " + X);
+
+// 3. То же самое для потраченного кешбэка (tt)
+                WebElement ttElement = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                        AppiumBy.xpath("(//android.view.View[@content-desc='tt'])[2]/preceding-sibling::*[@content-desc != ''][1]")
+                ));
+                String rawTt = ttElement.getAttribute("content-desc");
+                System.out.println("DEBUG: Найденный текст для tt: [" + rawTt + "]");
+
+                int Y = Integer.parseInt(rawTt.replaceAll("[^0-9]", ""));
+                System.out.println("Потраченный кешбэк (Y): " + Y);
+
+
+                System.out.println("47. Клик — кнопка оплаты (To'lash).");
+                WebElement payBtn = wait.until(ExpectedConditions.elementToBeClickable(
+                        AppiumBy.xpath("//*[contains(@content-desc, \"To'lash\") and contains(@content-desc, 'UZS')]")
+                ));
+                payBtn.click();
+
+
+                System.out.println("48. Проверка — Ilovani baholang.");
+                WebElement rateDialog3 = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                        AppiumBy.accessibilityId("Ilovani baholang\nIlovani baholang")));
+                Assert.assertTrue(rateDialog3.isDisplayed(), "Диалог оценки не появился");
+                System.out.println("✅ Диалог оценки появился");
+
+                System.out.println("49. Клик — Asosiy sahifaga.");
+                wait.until(ExpectedConditions.elementToBeClickable(
+                        AppiumBy.accessibilityId("Asosiy sahifaga\nAsosiy sahifaga"))).click();
+                Thread.sleep(2000);
+
+                System.out.println("50. Проверка — кешбека.");
+                wait.until(ExpectedConditions.elementToBeClickable(
+                        AppiumBy.xpath("//*[contains(@content-desc, 'Butun vaqt davomida') and contains(@content-desc, 'Keshbek balansi')]"))).click();
+                Thread.sleep(2000);
+
+                System.out.println("--- ПРОВЕРКА ИСТОРИИ (ПО ДАТЕ 04.2026) ---");
+
+// 51. Проверяем начисление (X) во вкладке по умолчанию (Daromadlar)
+                System.out.println("51. Проверка — ищем начисление: " + X);
+                wait.until(ExpectedConditions.visibilityOfElementLocated(
+                        // Ищем любой день в 04.2026 -> спускаемся к первой записи -> ищем там наш X
+                        AppiumBy.xpath("(//*[contains(@content-desc, '04.2026')]/following-sibling::*[contains(@content-desc, '" + X + "')])[1]")
+                ));
+                System.out.println("✅ Начисление " + X + " успешно найдено в Daromadlar!");
+
+
+// 52. Кликаем на вкладку Xarajatlar (Расходы)
+                System.out.println("52. Клик — вкладка Xarajatlar.");
+                wait.until(ExpectedConditions.elementToBeClickable(
+                        AppiumBy.accessibilityId("Xarajatlar\n2 varaqdan 2")
                 )).click();
 
-                // 22. Проверка — кнопка вернулась на «Kirish».
-                System.out.println("22. Проверка — кнопка вернулась на «Kirish».");
-                WebElement btnKirish = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                                AppiumBy.accessibilityId("Kirish\nKirish")));
-                Assert.assertTrue(btnKirish.isDisplayed(), "Кнопка 'Kirish' не найдена");
-                System.out.println("✅ Кнопка 'Kirish' найдена");
+// Обязательная пауза, чтобы Flutter успел перерисовать список (иначе найдет старые записи)
+                Thread.sleep(1000);
 
-                // 23. Клик — раздел «Savol-javoblar» (Вопросы и ответы).
-                System.out.println("23. Клик — раздел «Savol-javoblar» (Вопросы и ответы).");
-                wait.until(ExpectedConditions.elementToBeClickable(
-                                AppiumBy.accessibilityId("Savol-javoblar"))).click();
 
-                // 24. Ввод текста — пишем слово "paroli".
-                System.out.println("24. Ввод текста — пишем слово \"paroli\".");
-                WebElement searchField = wait.until(ExpectedConditions.elementToBeClickable(
-                                AppiumBy.androidUIAutomator(
-                                                "new UiSelector().className(\"android.widget.EditText\")")));
-                searchField.click();
-                searchField.sendKeys("paroli");
-
-                // 25. Клик — по найденному вопросу.
-                System.out.println("25. Клик — по найденному вопросу.");
-                wait.until(ExpectedConditions.elementToBeClickable(
-                                AppiumBy.accessibilityId("Shaxsiy kabinet parolini qanday bilishim mumkin?"))).click();
-
-                // 26. Проверка — текст ответа про пароль.
-                System.out.println("26. Проверка — текст ответа про пароль.");
-                WebElement faqAnswer = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                                AppiumBy.accessibilityId(
-                                                "Shaxsiy kabinet parolini qanday bilishim mumkin?\nAgar siz shaxsiy kabinet parolini unutgan bo'lsangiz, 1132 raqamiga qo'ng'iroq qiling. F.I.O., login va shartnoma egasining pasport seriyasini aniqlang, va biz parolni standart holatga qaytarib beramiz.")));
-                Assert.assertTrue(faqAnswer.isDisplayed(), "Ответ на вопрос про пароль не найден");
-                System.out.println("✅ Ответ на вопрос про пароль найден");
-
-                // 27. Клик — кнопка «Orqaga» (Назад).
-                System.out.println("27. Клик — кнопка «Orqaga» (Назад).");
-                wait.until(ExpectedConditions.elementToBeClickable(
-                                AppiumBy.accessibilityId("Orqaga"))).click();
-
-                // 28. Клик (Системный) — физическая кнопка Назад (Back).
-                System.out.println("28. Клик (Системный) — физическая кнопка Назад (Back).");
-                driver.navigate().back();
-
-                // 29. Клик — открытие чата/меню.
-                System.out.println("29. Клик — открытие чата/меню.");
-                wait.until(ExpectedConditions.elementToBeClickable(
-                                AppiumBy.androidUIAutomator(
-                                                "new UiSelector().className(\"android.widget.ImageView\").instance(10)")))
-                                .click();
-
-                // 30. Клик — раздел «Turon Market».
-                System.out.println("30. Клик — раздел «Turon Market».");
-                wait.until(ExpectedConditions.elementToBeClickable(
-                                AppiumBy.accessibilityId("Turon Market"))).click();
-
-                // 31. Ввод текста — пишем "test" в первое поле.
-                System.out.println("31. Ввод текста — пишем \"test\" в первое поле.");
-                WebElement fieldTest = wait.until(ExpectedConditions.elementToBeClickable(
-                                AppiumBy.androidUIAutomator(
-                                                "new UiSelector().className(\"android.widget.EditText\").instance(0)")));
-                searchField.click();
-                fieldTest.sendKeys("test");
-
-                // 🛑 УБЕРИТЕ блок try-catch с hideKeyboard() полностью!
-
-// 32. Ввод текста — пишем "00123456" в поле телефона.
-                WebElement phoneInput = wait.until(ExpectedConditions.elementToBeClickable(
-                        AppiumBy.xpath("//android.widget.EditText[contains(@text, '+998')]")
+// 53. Проверяем списание (Y) во вкладке Xarajatlar
+                System.out.println("53. Проверка — ищем списание: " + Y);
+                wait.until(ExpectedConditions.visibilityOfElementLocated(
+                        // Снова опираемся на 04.2026 и ищем первую запись с Y
+                        AppiumBy.xpath("(//*[contains(@content-desc, '04.2026')]/following-sibling::*[contains(@content-desc, '" + Y + "')])[1]")
                 ));
-// Просто отправляем текст, без лишних кликов, чтобы фокус не прыгал
-                phoneInput.sendKeys("00123456");
+                System.out.println("✅ Списание " + Y + " успешно найдено в Xarajatlar!");
 
-// 33. Проверка — кнопка «Yuborish» заблокирована
-// ВАЖНО: Мы используем visibilityOfElementLocated, чтобы Appium просто посмотрел на нее, но не пытался с ней взаимодействовать!
-                WebElement yuborishBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                        AppiumBy.xpath("//*[contains(@content-desc, 'Yuborish')]")
-                ));
+                Thread.sleep(2000);
 
-// Читаем статус кнопки
-                String isClickable = yuborishBtn.getAttribute("clickable");
-                System.out.println("Статус кнопки Yuborish (должен быть false): " + isClickable);
-
-// 34. Ввод текста — пишем ПРАВИЛЬНЫЙ номер.
-// Снова обращаемся к тому же элементу phoneInput
-                phoneInput.click(); // Фокусируемся
-                phoneInput.clear(); // Стираем "00123456"
-                phoneInput.sendKeys("90123456"); // Вставьте здесь ваш валидный номер
-
-// 35. Клик — кнопка «Yuborish» (Отправить)
+                System.out.println("54. Клик — иконка (instance 0).");
                 wait.until(ExpectedConditions.elementToBeClickable(
-                        AppiumBy.xpath("//*[contains(@content-desc, 'Yuborish')]")
-                )).click();
+                        AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.ImageView\").instance(0)"))).click();
+                Thread.sleep(1000);
 
-                // 36. Клик — раздел «Operator bilan aloqa» (Связь с оператором).
-                System.out.println("36. Клик — раздел «Operator bilan aloqa» (Связь с оператором).");
-                wait.until(ExpectedConditions.elementToBeClickable(
-                                AppiumBy.xpath("//android.view.View[@content-desc=\"Operator bilan aloqa\"]"))).click();
 
-                // 37. Ввод текста — пишем "test123!@#йцуйц".
-                System.out.println("37. Ввод текста — пишем \"test123!@#йцуйц\".");
-                WebElement chatInput = wait.until(ExpectedConditions.elementToBeClickable(
-                                AppiumBy.androidUIAutomator(
-                                                "new UiSelector().className(\"android.widget.EditText\")")));
-                chatInput.sendKeys("test123!@#йцуйц");
 
-                // 38. Клик — отправить сообщение (иконка стрелочки).
-                System.out.println("38. Клик — отправить сообщение (иконка стрелочки).");
-                wait.until(ExpectedConditions.elementToBeClickable(
-                                AppiumBy.androidUIAutomator(
-                                                "new UiSelector().className(\"android.widget.ImageView\").instance(2)")))
-                                .click();
 
-                // 39. Проверка — сообщение появилось в истории.
-                System.out.println("39. Проверка — сообщение появилось в истории.");
-                WebElement chatMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                                AppiumBy.accessibilityId("test123!@#йцуйц\n07:57")));
-                Assert.assertTrue(chatMessage.isDisplayed(), "Сообщение не найдено в истории чата");
-                System.out.println("✅ Сообщение найдено в истории чата");
+
+
+
+
+
+
+
+
+
+
+
+
+
         }
-
         @AfterTest
         public void close() {
                 if (driver != null) {
